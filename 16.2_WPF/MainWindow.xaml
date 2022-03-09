@@ -1,0 +1,51 @@
+﻿<Window x:Class="_16._2_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_16._2_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="330" Width="310">
+    <Window.Resources>
+        <PathGeometry x:Key="path" Figures="M38.376682,261.56502 C56.371344,246.60016 68.146063,243.91148 92.360669,216.67044 116.57527,189.42939 113.54977,191.44605 124.64765,162.18703 135.74552,132.92802 131.71121,147.05185 135.74628,120.81983 139.78136,94.587798 141.80013,80.461404 139.78179,61.291819 137.76344,42.122235 139.10882,37.749705 138.77234,25.978648 153.23409,45.14887 170.04998,69.36397 182.1576,83.489313 194.26522,97.614657 197.29234,108.71314 205.36391,135.95488 213.43547,163.19661 214.44571,150.08022&#xD;&#xA;219.48987,186.40253 224.53403,222.72484 226.88896,220.70694 230.5885,237.85914 L233.61507,259.04716"/>                
+    </Window.Resources>
+    <Grid>
+        <Canvas>
+            <Path Data="{StaticResource path}" Stroke="Red"/>
+            <Path Data="{StaticResource path}" Stroke="Red"/>
+            <Image Source="Data/Мяч.png" Stretch="UniformToFill" Height="80" Width="80" Canvas.Top="250" Canvas.Left="60">
+                <Image.RenderTransform>
+                    <TranslateTransform X="-40" Y="-40"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Window.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingPath
+                                Storyboard.TargetProperty="(Canvas.Top)"                                
+                                AccelerationRatio="0.7"
+                                DecelerationRatio="0.3"
+                                Duration="0:0:5"
+                                RepeatBehavior="Forever"
+                                PathGeometry="{StaticResource path}"
+                                Source="Y"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingPath
+                                Storyboard.TargetProperty="(Canvas.Left)"                                
+                                AccelerationRatio="0.7"
+                                DecelerationRatio="0.3"
+                                Duration="0:0:5"
+                                RepeatBehavior="Forever"
+                                PathGeometry="{StaticResource path}"
+                                Source="X"/>
+                            </Storyboard>
+                        </BeginStoryboard>                        
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+        </Canvas>
+    </Grid>
+</Window>
